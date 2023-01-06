@@ -1,3 +1,5 @@
+use smoldb::eval_loop;
+
 fn main() {
-    println!("Hello, world!");
+    eval_loop();
 }

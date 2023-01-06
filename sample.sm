@@ -1,0 +1,34 @@
+// simple script in smol
+create Users table {
+    first_name str
+    last_name str
+    age i64
+    sex str
+}
+
+loop 0..4 {
+    let first_name be read_str("enter first name: ")
+    let last_name be read_str("enter last name: ")
+    let age be read_i64("enter age: ")
+    let sex be read_str("enter sex: ")
+    insert (first_name, last_name, age, sex) into Users
+}
+// assuming Users table after loop
+___________________________________________________________________
+| id: i64 | first_name: str | last_name: str | age: i64 | sex: str|
+|    1    | "Joshua"        | "Pepple"       |   23     | "male"  |
+|    2    | "Dude"          | "Dude"         |   30     | "male"  |
+|    3    | "Dudette"       | "Dudette"      |   22     | "female"|
+|    4    | "Hahaha"        | "Hahaha"       |   25     | "male"  |
+___________________________________________________________________
+
+select first_name, last_name into names from Users where
+    first_name.length >= 6
+    age >= 20 && age < 24
+    sex is "male"
+then print(names)
+// names derived table after running query
+______________________________________________
+| id: i64 | first_name: str | last_name: str |
+|    1    | "Joshua"        | "pepple"       |
+______________________________________________
